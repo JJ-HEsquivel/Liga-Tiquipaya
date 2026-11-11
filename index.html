@@ -1,11 +1,14 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#16051D">
+
     <title>TIQUI LEAGUE | Tabla de posiciones</title>
+
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -14,70 +17,116 @@
     <!-- ENCABEZADO -->
     <header class="header">
 
-        <button class="menu-button" id="menuButton"
-                aria-label="Abrir menú" aria-expanded="false">
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+        >
             <span></span>
             <span></span>
             <span></span>
         </button>
 
+        <!-- LOGOTIPO -->
         <div class="brand">
-            <!-- LOGOTIPO DEL LEÓN -->
-            <svg class="lion-logo" viewBox="0 0 100 100"
-                 xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 5 L88 20 L83 66 L50 95 L17 66 L12 20 Z"
-                      fill="none" stroke="currentColor" stroke-width="4"/>
-                <path d="M50 19
-                         C39 19 31 28 33 39
-                         L25 47 L32 54
-                         L30 68 L43 76
-                         L50 70 L57 76
-                         L70 68 L68 54
-                         L75 47 L67 39
-                         C69 28 61 19 50 19Z"
-                      fill="currentColor"/>
-                <path d="M39 42 L46 45 M61 42 L54 45"
-                      stroke="#16051D" stroke-width="3"
-                      stroke-linecap="round"/>
-                <path d="M45 55 L50 59 L55 55"
-                      stroke="#16051D" stroke-width="3"
-                      fill="none" stroke-linecap="round"/>
+
+            <svg
+                class="lion-logo"
+                viewBox="0 0 100 100"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M50 5 L88 20 L83 66 L50 95 L17 66 L12 20 Z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="4"
+                />
+
+                <path
+                    d="M50 19
+                    C39 19 31 28 33 39
+                    L25 47 L32 54
+                    L30 68 L43 76
+                    L50 70 L57 76
+                    L70 68 L68 54
+                    L75 47 L67 39
+                    C69 28 61 19 50 19Z"
+                    fill="currentColor"
+                />
+
+                <path
+                    d="M39 42 L46 45 M61 42 L54 45"
+                    stroke="#16051D"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M45 55 L50 59 L55 55"
+                    stroke="#16051D"
+                    stroke-width="3"
+                    fill="none"
+                    stroke-linecap="round"
+                />
             </svg>
 
             <div class="brand-name">
                 <span>TIQUI</span>
                 <span>LEAGUE</span>
             </div>
+
         </div>
 
     </header>
 
+
     <!-- MENÚ LATERAL -->
     <nav class="sidebar" id="sidebar">
-        <div class="sidebar-title">TIQUI LEAGUE</div>
+
+        <div class="sidebar-title">
+            TIQUI LEAGUE
+        </div>
+
         <a href="#" class="active">Tabla de posiciones</a>
         <a href="#">Equipos</a>
         <a href="#">Calendario</a>
         <a href="#">Resultados</a>
+
     </nav>
 
     <div class="overlay" id="overlay"></div>
 
-    <!-- BANNER -->
+
+    <!-- BANNER PRINCIPAL -->
     <section class="banner">
+
         <div class="banner-content">
-            <span class="banner-subtitle">COMPETICIÓN OFICIAL</span>
+
+            <span class="banner-subtitle">
+                COMPETICIÓN OFICIAL
+            </span>
+
             <h1>Tabla</h1>
-            <p>TIQUI LEAGUE</p>
+
+            <p>TEAM GLS</p>
+
         </div>
-        <div class="banner-decoration">TL</div>
+
+        <div class="banner-decoration">
+            TL
+        </div>
+
     </section>
+
 
     <!-- CONTENIDO PRINCIPAL -->
     <main class="main-container">
 
+
         <!-- PESTAÑAS -->
         <section class="tabs-container">
+
             <button class="tab active" data-tab="short">
                 Short
             </button>
@@ -89,32 +138,40 @@
             <button class="tab" data-tab="form">
                 Form
             </button>
+
         </section>
 
-        <!-- TABLA -->
+
+        <!-- TABLA DE POSICIONES -->
         <section class="table-container">
 
-            <table class="standings-table">
+            <table class="standings-table" id="standingsTable">
 
-                <thead id="tableHead">
-                    <!-- Se genera desde JavaScript -->
-                </thead>
+                <thead id="tableHead"></thead>
 
-                <tbody id="tableBody">
-                    <!-- Se genera desde JavaScript -->
-                </tbody>
+                <tbody id="tableBody"></tbody>
 
             </table>
 
         </section>
 
+
+        <!-- PIE DE PÁGINA -->
         <footer class="footer">
+
             <span>TIQUI LEAGUE</span>
-            <span>Tabla de posiciones</span>
+
+            <span>TEAM GLS</span>
+
         </footer>
 
     </main>
 
+
+    <!-- JAVASCRIPT -->
     <script src="script.js"></script>
+
 </body>
+
 </html>
+

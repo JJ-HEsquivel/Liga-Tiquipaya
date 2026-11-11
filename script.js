@@ -1,22 +1,10 @@
 
-/* ==============================
-   EQUIPOS DEL CAMPEONATO
-================================ */
+// =====================================
+// EQUIPOS DEL CAMPEONATO TEAM GLS
+// =====================================
 
 const teams = [
-    {
-        name: "TEAM GLS",
-        played: 0,
-        wins: 0,
-        draws: 0,
-        losses: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
-        points: 0,
-        next: "-",
-        form: []
-    },
+
     {
         name: "PARADISÍACO FC",
         played: 0,
@@ -30,6 +18,7 @@ const teams = [
         next: "-",
         form: []
     },
+
     {
         name: "INDEPENDIENTE",
         played: 0,
@@ -43,6 +32,7 @@ const teams = [
         next: "-",
         form: []
     },
+
     {
         name: "OLYMPIC",
         played: 0,
@@ -56,6 +46,7 @@ const teams = [
         next: "-",
         form: []
     },
+
     {
         name: "SUDAMERICANOS",
         played: 0,
@@ -69,6 +60,7 @@ const teams = [
         next: "-",
         form: []
     },
+
     {
         name: "FRANSISQUIÑOS",
         played: 0,
@@ -82,6 +74,7 @@ const teams = [
         next: "-",
         form: []
     },
+
     {
         name: "FC AMIGOS",
         played: 0,
@@ -95,6 +88,7 @@ const teams = [
         next: "-",
         form: []
     },
+
     {
         name: "CARNICERIA FC",
         played: 0,
@@ -108,54 +102,121 @@ const teams = [
         next: "-",
         form: []
     }
+
 ];
 
 
-/* ==============================
-   REFERENCIAS HTML
-================================ */
+// =====================================
+// REFERENCIAS HTML
+// =====================================
 
 const tableHead = document.getElementById("tableHead");
+
 const tableBody = document.getElementById("tableBody");
+
+const standingsTable = document.getElementById("standingsTable");
 
 const tabs = document.querySelectorAll(".tab");
 
 
-/* ==============================
-   COLUMNAS DE CADA VISTA
-================================ */
+// =====================================
+// COLUMNAS DE CADA VISTA
+// =====================================
 
 const columns = {
-    short: ["Pos", "Team", "Pl", "W", "GD", "Pts"],
 
-    full: [
-        "Pos", "Team", "Pl", "W",
-        "D", "L", "GF", "GA", "GD", "Pts", "Next"
+    short: [
+        "Pos.",
+        "Team",
+        "Pl",
+        "W",
+        "GD",
+        "Pts."
     ],
 
-    form: ["Pos", "Team", "Form"]
+    full: [
+        "Pos.",
+        "Team",
+        "Pl",
+        "W",
+        "D",
+        "L",
+        "GF",
+        "GA",
+        "GD",
+        "Pts.",
+        "Next"
+    ],
+
+    form: [
+        "Pos.",
+        "Team",
+        "Form"
+    ]
+
 };
 
 
-/* ==============================
-   GENERAR ENCABEZADO
-================================ */
+// =====================================
+// GENERAR ENCABEZADO
+// =====================================
 
 function renderHeader(mode) {
 
     tableHead.innerHTML = `
         <tr>
-            ${columns[mode].map(column =>
-                `<th>${column}</th>`
-            ).join("")}
+            ${columns[mode].map(column => `
+                <th>${column}</th>
+            `).join("")}
         </tr>
     `;
+
 }
 
 
-/* ==============================
-   GENERAR FILAS
-================================ */
+// =====================================
+// GENERAR IDENTIFICADOR DEL EQUIPO
+// =====================================
+
+function getInitials(name) {
+
+    return name
+        .split(" ")
+        .map(word => word[0])
+        .slice(0, 2)
+        .join("");
+
+}
+
+
+// =====================================
+// GENERAR CELDA DEL EQUIPO
+// =====================================
+
+function renderTeamCell(team) {
+
+    const initials = getInitials(team.name);
+
+    return `
+        <div class="team-cell">
+
+            <div class="team-logo">
+                ${initials}
+            </div>
+
+            <span class="team-name">
+                ${team.name}
+            </span>
+
+        </div>
+    `;
+
+}
+
+
+// =====================================
+// GENERAR FILAS DE LA TABLA
+// =====================================
 
 function renderTeams(mode) {
 
@@ -163,93 +224,145 @@ function renderTeams(mode) {
 
     teams.forEach((team, index) => {
 
-        let row = document.createElement("tr");
+        const position = index + 1;
 
-        let position = index + 1;
+        const formattedPosition = position
+            .toString()
+            .padStart(2, "0");
 
-        // Iniciales para identificar visualmente cada equipo
-        let initials = team.name
-            .split(" ")
-            .map(word => word[0])
-            .slice(0, 2)
-            .join("");
-
-        let teamCell = `
-            <div class="team-cell">
-                <div class="team-logo">${initials}</div>
-                <span class="team-name">${team.name}</span>
-            </div>
-        `;
+        const teamCell = renderTeamCell(team);
 
         let cells = "";
 
+
+        // ---------------------------------
         // VISTA SHORT
+        // ---------------------------------
+
         if (mode === "short") {
 
             cells = `
-                <td>${position.toString().padStart(2, "0")}</td>
+
+                <td>${formattedPosition}</td>
+
                 <td>${teamCell}</td>
+
                 <td>${team.played}</td>
+
                 <td>${team.wins}</td>
+
                 <td>${team.gd}</td>
-                <td><strong>${team.points}</strong></td>
+
+                <td>
+                    <strong>${team.points}</strong>
+                </td>
+
             `;
+
         }
 
+
+        // ---------------------------------
         // VISTA FULL
+        // ---------------------------------
+
         else if (mode === "full") {
 
             cells = `
-                <td>${position.toString().padStart(2, "0")}</td>
+
+                <td>${formattedPosition}</td>
+
                 <td>${teamCell}</td>
+
                 <td>${team.played}</td>
+
                 <td>${team.wins}</td>
+
                 <td>${team.draws}</td>
+
                 <td>${team.losses}</td>
+
                 <td>${team.gf}</td>
+
                 <td>${team.ga}</td>
+
                 <td>${team.gd}</td>
-                <td><strong>${team.points}</strong></td>
+
+                <td>
+                    <strong>${team.points}</strong>
+                </td>
+
                 <td>${team.next}</td>
+
             `;
+
         }
 
+
+        // ---------------------------------
         // VISTA FORM
+        // ---------------------------------
+
         else if (mode === "form") {
 
-            let formHTML = team.form.length
-                ? team.form.map(result => `
+            const formHTML = team.form.length > 0
+
+                ? team.form.slice(-5).map(result => `
+
                     <span class="form-badge form-${result}">
                         ${result}
                     </span>
+
                 `).join("")
+
                 : Array(5).fill(`
-                    <span class="form-badge form-empty">-</span>
+
+                    <span class="form-badge form-empty">
+                        -
+                    </span>
+
                 `).join("");
 
+
             cells = `
-                <td>${position.toString().padStart(2, "0")}</td>
+
+                <td>${formattedPosition}</td>
+
                 <td>${teamCell}</td>
+
                 <td>
+
                     <div class="form-results">
+
                         ${formHTML}
+
                     </div>
+
                 </td>
+
             `;
+
         }
+
+
+        const row = document.createElement("tr");
 
         row.innerHTML = cells;
 
         tableBody.appendChild(row);
+
     });
+
 }
 
 
-/* ==============================
-   CAMBIAR PESTAÑAS
-================================ */
+// =====================================
+// CAMBIAR PESTAÑA
+// =====================================
 
 function changeTab(mode) {
+
+    // Actualizar botón activo
 
     tabs.forEach(tab => {
 
@@ -260,14 +373,24 @@ function changeTab(mode) {
 
     });
 
+
+    // Identificar vista actual para el CSS
+
+    standingsTable.dataset.mode = mode;
+
+
+    // Actualizar tabla
+
     renderHeader(mode);
+
     renderTeams(mode);
+
 }
 
 
-/* ==============================
-   EVENTOS DE LAS PESTAÑAS
-================================ */
+// =====================================
+// EVENTOS DE LAS PESTAÑAS
+// =====================================
 
 tabs.forEach(tab => {
 
@@ -282,13 +405,16 @@ tabs.forEach(tab => {
 });
 
 
-/* ==============================
-   MENÚ LATERAL
-================================ */
+// =====================================
+// MENÚ LATERAL
+// =====================================
 
 const menuButton = document.getElementById("menuButton");
+
 const sidebar = document.getElementById("sidebar");
+
 const overlay = document.getElementById("overlay");
+
 
 function toggleMenu() {
 
@@ -296,17 +422,27 @@ function toggleMenu() {
 
     overlay.classList.toggle("show", isOpen);
 
-    menuButton.setAttribute("aria-expanded", isOpen);
+    menuButton.setAttribute(
+        "aria-expanded",
+        isOpen.toString()
+    );
 
 }
 
+
+// Abrir y cerrar menú
+
 menuButton.addEventListener("click", toggleMenu);
+
+
+// Cerrar al presionar fuera
 
 overlay.addEventListener("click", toggleMenu);
 
 
-/* ==============================
-   INICIALIZAR SISTEMA
-================================ */
+// =====================================
+// INICIALIZAR SISTEMA
+// =====================================
 
 changeTab("short");
+
