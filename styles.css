@@ -1,0 +1,472 @@
+
+/* ==============================
+   CONFIGURACIÓN GENERAL
+================================ */
+
+:root {
+    --background: #16051D;
+    --surface: #210829;
+    --surface-light: #300B3C;
+    --purple: #8B35FF;
+    --blue: #397EFF;
+    --cyan: #12DDEB;
+    --white: #FFFFFF;
+    --text-muted: #BFAFC8;
+    --border: #51205C;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--background);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+
+/* ==============================
+   ENCABEZADO
+================================ */
+
+.header {
+    height: 65px;
+    display: flex;
+    align-items: center;
+    padding: 0 22px;
+    gap: 18px;
+    background: #18031D;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.menu-button {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: #300B3C;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.menu-button span {
+    width: 21px;
+    height: 2px;
+    background: white;
+    border-radius: 3px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lion-logo {
+    width: 42px;
+    height: 42px;
+    color: white;
+}
+
+.brand-name {
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 15px;
+    letter-spacing: -0.5px;
+}
+
+
+/* ==============================
+   MENÚ LATERAL
+================================ */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 260px;
+    height: 100vh;
+    padding: 30px 20px;
+    background: #210829;
+    z-index: 20;
+    transition: left 0.3s ease;
+    border-right: 1px solid var(--border);
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar-title {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    text-decoration: none;
+    color: var(--text-muted);
+    padding: 14px;
+    margin-bottom: 8px;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    color: white;
+    background: var(--surface-light);
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    z-index: 15;
+    display: none;
+}
+
+.overlay.show {
+    display: block;
+}
+
+
+/* ==============================
+   BANNER PRINCIPAL
+================================ */
+
+.banner {
+    height: 170px;
+    padding: 30px 25px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            115deg,
+            #9835FF 0%,
+            #6577FF 48%,
+            #13DFEB 100%
+        );
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+}
+
+.banner-subtitle {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    opacity: 0.9;
+}
+
+.banner h1 {
+    font-size: 42px;
+    font-weight: 800;
+    margin-top: 8px;
+}
+
+.banner p {
+    font-size: 13px;
+    margin-top: 5px;
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+
+.banner-decoration {
+    position: absolute;
+    right: 7%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 115px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.13);
+    letter-spacing: -12px;
+}
+
+
+/* ==============================
+   CONTENIDO
+================================ */
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 18px;
+}
+
+
+/* ==============================
+   PESTAÑAS SHORT FULL FORM
+================================ */
+
+.tabs-container {
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    background: #390A46;
+    border-radius: 9px;
+    margin-bottom: 25px;
+    gap: 5px;
+}
+
+.tab {
+    flex: 1;
+    padding: 13px 10px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.tab:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+.tab.active {
+    background: #25052E;
+    font-weight: 700;
+}
+
+
+/* ==============================
+   TABLA DE POSICIONES
+================================ */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    background: #210529;
+    border-radius: 12px;
+}
+
+.standings-table {
+    width: 100%;
+    min-width: 570px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.standings-table th {
+    padding: 18px 10px;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.standings-table th:nth-child(2) {
+    text-align: left;
+}
+
+.standings-table td {
+    padding: 18px 10px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.standings-table tbody tr {
+    height: 72px;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.035);
+    transition: background 0.2s;
+}
+
+.standings-table tbody tr:hover {
+    background: rgba(255,255,255,0.045);
+}
+
+.standings-table tbody tr td:first-child {
+    font-weight: 700;
+    position: relative;
+}
+
+.standings-table tbody tr td:first-child::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    bottom: 10px;
+    width: 4px;
+    background: #2764FF;
+    border-radius: 0 5px 5px 0;
+}
+
+.standings-table tbody tr:nth-child(5) td:first-child::before {
+    background: #FF8700;
+}
+
+
+/* ==============================
+   NOMBRE DE EQUIPOS
+================================ */
+
+.team-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+}
+
+.team-logo {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #35103F;
+    color: white;
+    font-size: 11px;
+    font-weight: 800;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.team-name {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+
+/* ==============================
+   FORMULARIO DE RESULTADOS
+================================ */
+
+.form-results {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.form-badge {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.form-W {
+    background: #168A48;
+}
+
+.form-D {
+    background: #C58B16;
+}
+
+.form-L {
+    background: #D90035;
+}
+
+.form-empty {
+    background: #49364F;
+    color: #CFC1D5;
+}
+
+
+/* ==============================
+   PIE DE PÁGINA
+================================ */
+
+.footer {
+    padding: 25px 5px;
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-muted);
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+
+/* ==============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 600px) {
+
+    .header {
+        padding: 0 12px;
+        height: 60px;
+    }
+
+    .banner {
+        height: 140px;
+        padding: 20px;
+    }
+
+    .banner h1 {
+        font-size: 34px;
+    }
+
+    .banner-decoration {
+        font-size: 85px;
+        right: 8%;
+    }
+
+    .main-container {
+        padding: 20px 8px;
+    }
+
+    .tabs-container {
+        margin-bottom: 18px;
+    }
+
+    .tab {
+        padding: 12px 5px;
+        font-size: 13px;
+    }
+
+    .standings-table th {
+        padding: 15px 8px;
+    }
+
+    .standings-table td {
+        padding: 16px 8px;
+    }
+
+    .team-cell {
+        gap: 8px;
+    }
+
+    .team-logo {
+        width: 27px;
+        height: 27px;
+    }
+
+    .team-name {
+        font-size: 12px;
+    }
+
+    .form-results {
+        gap: 6px;
+    }
+
+    .form-badge {
+        width: 23px;
+        height: 23px;
+    }
+}
