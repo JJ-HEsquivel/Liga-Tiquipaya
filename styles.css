@@ -1,6 +1,6 @@
 
 /* =====================================
-   VARIABLES Y CONFIGURACIÓN GENERAL
+   1. VARIABLES GENERALES
 ===================================== */
 
 :root {
@@ -25,25 +25,23 @@
     box-sizing: border-box;
 }
 
-html {
+html,
+body {
     width: 100%;
+    min-height: 100%;
     overflow-x: hidden;
 }
 
 body {
-    width: 100%;
     min-height: 100vh;
-    overflow-x: hidden;
-
     background: var(--background);
     color: var(--white);
-
     font-family: Arial, Helvetica, sans-serif;
 }
 
 
 /* =====================================
-   ENCABEZADO
+   2. ENCABEZADO
 ===================================== */
 
 .header {
@@ -113,7 +111,7 @@ body {
 
 
 /* =====================================
-   MENÚ LATERAL
+   3. MENÚ LATERAL
 ===================================== */
 
 .sidebar {
@@ -143,7 +141,6 @@ body {
 .sidebar-title {
     font-size: 20px;
     font-weight: 800;
-
     margin-bottom: 30px;
 }
 
@@ -151,14 +148,12 @@ body {
     display: block;
 
     text-decoration: none;
-
     color: var(--text-muted);
 
     padding: 14px;
     margin-bottom: 8px;
 
     border-radius: 7px;
-
     font-size: 14px;
 }
 
@@ -170,13 +165,11 @@ body {
 
 .overlay {
     position: fixed;
-
     inset: 0;
 
     background: rgba(0,0,0,0.65);
 
     z-index: 15;
-
     display: none;
 }
 
@@ -186,7 +179,7 @@ body {
 
 
 /* =====================================
-   BANNER PRINCIPAL
+   4. BANNER PRINCIPAL
 ===================================== */
 
 .banner {
@@ -217,24 +210,19 @@ body {
 .banner-subtitle {
     font-size: 11px;
     font-weight: 700;
-
     letter-spacing: 2px;
-
     opacity: 0.9;
 }
 
 .banner h1 {
     font-size: 42px;
     font-weight: 800;
-
     margin-top: 8px;
 }
 
 .banner p {
     font-size: 13px;
-
     margin-top: 5px;
-
     letter-spacing: 3px;
     font-weight: 600;
 }
@@ -251,13 +239,12 @@ body {
     font-weight: 900;
 
     color: rgba(255,255,255,0.13);
-
     letter-spacing: -12px;
 }
 
 
 /* =====================================
-   CONTENIDO PRINCIPAL
+   5. CONTENIDO PRINCIPAL
 ===================================== */
 
 .main-container {
@@ -265,13 +252,12 @@ body {
     max-width: 1200px;
 
     margin: 0 auto;
-
     padding: 24px 18px;
 }
 
 
 /* =====================================
-   PESTAÑAS SHORT / FULL / FORM
+   6. PESTAÑAS
 ===================================== */
 
 .tabs-container {
@@ -280,14 +266,12 @@ body {
     display: flex;
 
     padding: 5px;
+    gap: 5px;
 
     background: #390A46;
-
     border-radius: 9px;
 
     margin-bottom: 25px;
-
-    gap: 5px;
 }
 
 .tab {
@@ -299,11 +283,9 @@ body {
     border-radius: 6px;
 
     background: transparent;
-
     color: white;
 
     font-size: 14px;
-
     cursor: pointer;
 
     transition: background 0.2s;
@@ -320,16 +302,15 @@ body {
 
 
 /* =====================================
-   TABLA DE POSICIONES
+   7. TABLA GENERAL
 ===================================== */
 
 .table-container {
     width: 100%;
 
-    overflow-x: hidden;
+    overflow: hidden;
 
     background: #210529;
-
     border-radius: 12px;
 }
 
@@ -338,14 +319,13 @@ body {
     min-width: 0;
 
     table-layout: fixed;
-
     border-collapse: collapse;
 
     text-align: center;
 }
 
 .standings-table th {
-    padding: 18px 8px;
+    padding: 18px 5px;
 
     color: var(--text-muted);
 
@@ -353,7 +333,6 @@ body {
     font-weight: 400;
 
     text-align: center;
-
     white-space: nowrap;
 }
 
@@ -362,7 +341,7 @@ body {
 }
 
 .standings-table td {
-    padding: 18px 8px;
+    padding: 18px 5px;
 
     font-size: 14px;
     font-weight: 500;
@@ -384,7 +363,7 @@ body {
 
 
 /* =====================================
-   LÍNEA AZUL PARA TODOS LOS EQUIPOS
+   8. LÍNEA AZUL PARA TODOS
 ===================================== */
 
 .standings-table tbody tr td:first-child {
@@ -397,22 +376,18 @@ body {
     position: absolute;
 
     left: 0;
-
     top: 10px;
     bottom: 10px;
 
     width: 4px;
 
     background: var(--team-line);
-
     border-radius: 0 5px 5px 0;
 }
 
-/* Ningún equipo tendrá línea naranja */
-
 
 /* =====================================
-   NOMBRE E IDENTIFICADOR DE EQUIPOS
+   9. EQUIPOS
 ===================================== */
 
 .team-cell {
@@ -420,10 +395,9 @@ body {
     align-items: center;
 
     gap: 12px;
+    min-width: 0;
 
     text-align: left;
-
-    min-width: 0;
 }
 
 .team-logo {
@@ -439,7 +413,6 @@ body {
     border-radius: 50%;
 
     background: #35103F;
-
     color: white;
 
     font-size: 11px;
@@ -449,20 +422,18 @@ body {
 }
 
 .team-name {
-    font-weight: 700;
     font-size: 14px;
+    font-weight: 700;
 }
 
 
 /* =====================================
-   RESULTADOS FORM
+   10. FORMULARIO DE RESULTADOS
 ===================================== */
 
 .form-results {
     display: flex;
-
     justify-content: center;
-
     gap: 10px;
 }
 
@@ -501,7 +472,7 @@ body {
 
 
 /* =====================================
-   PIE DE PÁGINA
+   11. PIE DE PÁGINA
 ===================================== */
 
 .footer {
@@ -518,7 +489,7 @@ body {
 
 
 /* =====================================
-   RESPONSIVE - TABLETS
+   12. TABLETS
 ===================================== */
 
 @media (min-width: 601px) and (max-width: 900px) {
@@ -529,15 +500,16 @@ body {
 
     .standings-table th,
     .standings-table td {
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-left: 4px;
+        padding-right: 4px;
     }
 
 }
 
 
 /* =====================================
-   RESPONSIVE - CELULARES
+   13. CELULARES
+   TODAS LAS COLUMNAS VISIBLES
 ===================================== */
 
 @media (max-width: 600px) {
@@ -551,7 +523,7 @@ body {
 
     .main-container {
         width: 100%;
-        padding: 18px 8px;
+        padding: 18px 5px;
     }
 
 
@@ -588,7 +560,7 @@ body {
 
     .table-container {
         width: 100%;
-        overflow-x: hidden;
+        overflow: hidden;
     }
 
     .standings-table {
@@ -597,96 +569,143 @@ body {
         table-layout: fixed;
     }
 
-    .standings-table th,
-    .standings-table td {
-        padding: 15px 4px;
-        font-size: 11px;
+
+    /* ---------------------------------
+       SHORT: 6 COLUMNAS
+       Pos / Team / Pl / W / GD / Pts
+    --------------------------------- */
+
+    .standings-table[data-mode="short"] th:nth-child(1),
+    .standings-table[data-mode="short"] td:nth-child(1) {
+        width: 9%;
     }
 
-
-    /* POSICIÓN */
-
-    .standings-table th:first-child,
-    .standings-table td:first-child {
-        width: 48px;
-    }
-
-
-    /* EQUIPO */
-
-    .standings-table th:nth-child(2),
-    .standings-table td:nth-child(2) {
+    .standings-table[data-mode="short"] th:nth-child(2),
+    .standings-table[data-mode="short"] td:nth-child(2) {
+        width: 38%;
         text-align: left;
     }
 
-    .team-cell {
-        gap: 7px;
-        min-width: 0;
-    }
-
-    .team-logo {
-        width: 26px;
-        height: 26px;
-        font-size: 9px;
-    }
-
-    .team-name {
-        font-size: 11px;
-
-        white-space: normal;
-
-        overflow-wrap: anywhere;
-
-        line-height: 1.2;
-    }
-
-
-    /* SHORT
-       Pos. / Equipo / Pts.
-    */
-
     .standings-table[data-mode="short"] th:nth-child(3),
-    .standings-table[data-mode="short"] td:nth-child(3),
+    .standings-table[data-mode="short"] td:nth-child(3) {
+        width: 10%;
+    }
+
     .standings-table[data-mode="short"] th:nth-child(4),
-    .standings-table[data-mode="short"] td:nth-child(4),
+    .standings-table[data-mode="short"] td:nth-child(4) {
+        width: 8%;
+    }
+
     .standings-table[data-mode="short"] th:nth-child(5),
     .standings-table[data-mode="short"] td:nth-child(5) {
-        display: none;
+        width: 15%;
+    }
+
+    .standings-table[data-mode="short"] th:nth-child(6),
+    .standings-table[data-mode="short"] td:nth-child(6) {
+        width: 20%;
     }
 
 
-    /* FULL
-       Pos. / Equipo / Pl. / Pts.
-    */
+    /* ---------------------------------
+       FULL: 11 COLUMNAS
+       Pos / Team / Pl / W / D / L /
+       GF / GA / GD / Pts / Next
+    --------------------------------- */
 
-    .standings-table[data-mode="full"] th:nth-child(4),
-    .standings-table[data-mode="full"] td:nth-child(4),
-    .standings-table[data-mode="full"] th:nth-child(5),
-    .standings-table[data-mode="full"] td:nth-child(5),
-    .standings-table[data-mode="full"] th:nth-child(6),
-    .standings-table[data-mode="full"] td:nth-child(6),
-    .standings-table[data-mode="full"] th:nth-child(7),
-    .standings-table[data-mode="full"] td:nth-child(7),
-    .standings-table[data-mode="full"] th:nth-child(8),
-    .standings-table[data-mode="full"] td:nth-child(8),
-    .standings-table[data-mode="full"] th:nth-child(9),
-    .standings-table[data-mode="full"] td:nth-child(9),
-    .standings-table[data-mode="full"] th:nth-child(11),
-    .standings-table[data-mode="full"] td:nth-child(11) {
-        display: none;
+    .standings-table[data-mode="full"] th:nth-child(1),
+    .standings-table[data-mode="full"] td:nth-child(1) {
+        width: 8%;
+    }
+
+    .standings-table[data-mode="full"] th:nth-child(2),
+    .standings-table[data-mode="full"] td:nth-child(2) {
+        width: 29%;
+        text-align: left;
+    }
+
+    .standings-table[data-mode="full"] th:nth-child(n+3),
+    .standings-table[data-mode="full"] td:nth-child(n+3) {
+        width: 7%;
+    }
+
+    .standings-table[data-mode="full"] th,
+    .standings-table[data-mode="full"] td {
+        padding: 12px 1px;
+        font-size: 9px;
+        white-space: nowrap;
     }
 
 
-    /* FORM */
+    /* ---------------------------------
+       FORM: 3 COLUMNAS
+       Pos / Team / Form
+    --------------------------------- */
+
+    .standings-table[data-mode="form"] th:nth-child(1),
+    .standings-table[data-mode="form"] td:nth-child(1) {
+        width: 12%;
+    }
+
+    .standings-table[data-mode="form"] th:nth-child(2),
+    .standings-table[data-mode="form"] td:nth-child(2) {
+        width: 33%;
+        text-align: left;
+    }
 
     .standings-table[data-mode="form"] th:nth-child(3),
     .standings-table[data-mode="form"] td:nth-child(3) {
         width: 55%;
     }
 
+
+    /* ---------------------------------
+       ELEMENTOS INTERNOS
+    --------------------------------- */
+
+    .standings-table th,
+    .standings-table td {
+        padding: 13px 2px;
+        font-size: 10px;
+    }
+
+    .team-cell {
+        gap: 5px;
+        min-width: 0;
+    }
+
+    .team-logo {
+        width: 21px;
+        height: 21px;
+        font-size: 8px;
+    }
+
+    .team-name {
+        font-size: 9px;
+        font-weight: 700;
+
+        white-space: normal;
+        overflow-wrap: anywhere;
+
+        line-height: 1.15;
+    }
+
+    .standings-table tbody tr {
+        height: 65px;
+    }
+
+    .standings-table tbody tr td:first-child::before {
+        width: 3px;
+        top: 8px;
+        bottom: 8px;
+    }
+
+
+    /* RESULTADOS FORM */
+
     .form-results {
         gap: 4px;
-        justify-content: flex-end;
+        justify-content: center;
     }
 
     .form-badge {
@@ -700,6 +719,41 @@ body {
 
     .footer {
         font-size: 10px;
+    }
+
+}
+
+
+/* =====================================
+   14. CELULARES MUY ESTRECHOS
+===================================== */
+
+@media (max-width: 360px) {
+
+    .main-container {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .standings-table[data-mode="full"] th,
+    .standings-table[data-mode="full"] td {
+        font-size: 8px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .standings-table[data-mode="full"] .team-name {
+        font-size: 8px;
+    }
+
+    .team-logo {
+        width: 19px;
+        height: 19px;
+    }
+
+    .form-badge {
+        width: 19px;
+        height: 19px;
     }
 
 }
