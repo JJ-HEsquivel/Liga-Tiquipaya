@@ -1,93 +1,107 @@
-
 // =====================================
 // EQUIPOS DEL CAMPEONATO TEAM GLS
 // =====================================
+//
+// CÓMO ACTUALIZAR DESPUÉS DE CADA PARTIDO
+// - played = partidos jugados
+// - wins / draws / losses = ganados / empatados / perdidos
+// - gf = goles a favor, ga = goles en contra
+// - gd = gf - ga
+// - points = 3 por victoria, 1 por empate
+// - next = rival del próximo partido (o "-")
+// - form = últimos resultados: "W" ganó, "D" empató, "L" perdió
+//
+// El orden de la tabla se calcula solo (puntos, diferencia de gol, goles a favor).
 
 const teams = [
 
+    // -------- FECHA 1 --------
+
     {
         name: "PARADISÍACO FC",
-        played: 0,
-        wins: 0,
+        played: 1,
+        wins: 1,
         draws: 0,
         losses: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
-        points: 0,
+        gf: 13,
+        ga: 3,
+        gd: 10,
+        points: 3,
         next: "-",
-        form: []
+        form: ["W"]
     },
 
     {
         name: "INDEPENDIENTE",
-        played: 0,
+        played: 1,
         wins: 0,
         draws: 0,
-        losses: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
+        losses: 1,
+        gf: 6,
+        ga: 8,
+        gd: -2,
         points: 0,
         next: "-",
-        form: []
+        form: ["L"]
     },
 
     {
-        name: "OLYMPIC",
-        played: 0,
+        name: "OLIMPYC",
+        played: 1,
         wins: 0,
         draws: 0,
-        losses: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
+        losses: 1,
+        gf: 3,
+        ga: 13,
+        gd: -10,
         points: 0,
         next: "-",
-        form: []
+        form: ["L"]
     },
 
     {
         name: "SUDAMERICANOS",
-        played: 0,
-        wins: 0,
+        played: 1,
+        wins: 1,
         draws: 0,
         losses: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
-        points: 0,
+        gf: 8,
+        ga: 3,
+        gd: 5,
+        points: 3,
         next: "-",
-        form: []
+        form: ["W"]
     },
 
     {
         name: "FRANSISQUIÑOS",
-        played: 0,
-        wins: 0,
+        played: 1,
+        wins: 1,
         draws: 0,
         losses: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
-        points: 0,
+        gf: 8,
+        ga: 6,
+        gd: 2,
+        points: 3,
         next: "-",
-        form: []
+        form: ["W"]
     },
 
     {
         name: "FC AMIGOS",
-        played: 0,
+        played: 1,
         wins: 0,
         draws: 0,
-        losses: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
+        losses: 1,
+        gf: 3,
+        ga: 8,
+        gd: -5,
         points: 0,
         next: "-",
-        form: []
+        form: ["L"]
     },
+
+    // -------- AÚN NO JUEGAN --------
 
     {
         name: "CARNICERIA FC",
@@ -101,9 +115,35 @@ const teams = [
         points: 0,
         next: "-",
         form: []
+    },
+
+    {
+        name: "TEAM GLS",
+        played: 0,
+        wins: 0,
+        draws: 0,
+        losses: 0,
+        gf: 0,
+        ga: 0,
+        gd: 0,
+        points: 0,
+        next: "-",
+        form: []
     }
 
 ];
+
+
+// =====================================
+// ORDENAR LA TABLA AUTOMÁTICAMENTE
+// =====================================
+
+teams.sort((a, b) =>
+    b.points - a.points ||
+    b.gd - a.gd ||
+    b.gf - a.gf ||
+    a.name.localeCompare(b.name)
+);
 
 
 // =====================================
@@ -445,4 +485,3 @@ overlay.addEventListener("click", toggleMenu);
 // =====================================
 
 changeTab("short");
-
