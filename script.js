@@ -1,5 +1,5 @@
 // =====================================
-// EQUIPOS DEL CAMPEONATO TEAM GLS
+// 1. EQUIPOS DEL CAMPEONATO
 // =====================================
 //
 // CÓMO ACTUALIZAR DESPUÉS DE CADA PARTIDO
@@ -148,7 +148,7 @@ teams.sort((a, b) =>
 
 // =====================================
 // REFERENCIAS HTML
-// =====================================
+
 
 const tableHead = document.getElementById("tableHead");
 
@@ -160,7 +160,7 @@ const tabs = document.querySelectorAll(".tab");
 
 
 // =====================================
-// COLUMNAS DE CADA VISTA
+// 3. COLUMNAS DE CADA VISTA
 // =====================================
 
 const columns = {
@@ -198,7 +198,7 @@ const columns = {
 
 
 // =====================================
-// GENERAR ENCABEZADO
+// 4. GENERAR ENCABEZADO
 // =====================================
 
 function renderHeader(mode) {
@@ -215,7 +215,7 @@ function renderHeader(mode) {
 
 
 // =====================================
-// GENERAR IDENTIFICADOR DEL EQUIPO
+// 5. OBTENER INICIALES
 // =====================================
 
 function getInitials(name) {
@@ -230,7 +230,7 @@ function getInitials(name) {
 
 
 // =====================================
-// GENERAR CELDA DEL EQUIPO
+// 6. GENERAR CELDA DEL EQUIPO
 // =====================================
 
 function renderTeamCell(team) {
@@ -255,7 +255,7 @@ function renderTeamCell(team) {
 
 
 // =====================================
-// GENERAR FILAS DE LA TABLA
+// 7. GENERAR TABLA DE EQUIPOS
 // =====================================
 
 function renderTeams(mode) {
@@ -266,18 +266,16 @@ function renderTeams(mode) {
 
         const position = index + 1;
 
-        const formattedPosition = position
-            .toString()
-            .padStart(2, "0");
+        const formattedPosition = String(position).padStart(2, "0");
 
         const teamCell = renderTeamCell(team);
 
         let cells = "";
 
 
-        // ---------------------------------
-        // VISTA SHORT
-        // ---------------------------------
+        // =================================
+        // SHORT
+        // =================================
 
         if (mode === "short") {
 
@@ -302,9 +300,9 @@ function renderTeams(mode) {
         }
 
 
-        // ---------------------------------
-        // VISTA FULL
-        // ---------------------------------
+        // =================================
+        // FULL
+        // =================================
 
         else if (mode === "full") {
 
@@ -339,29 +337,37 @@ function renderTeams(mode) {
         }
 
 
-        // ---------------------------------
-        // VISTA FORM
-        // ---------------------------------
+        // =================================
+        // FORM
+        // =================================
 
         else if (mode === "form") {
 
-            const formHTML = team.form.length > 0
+            const recentResults = team.form.slice(-5);
 
-                ? team.form.slice(-5).map(result => `
+            let formHTML = "";
+
+            if (recentResults.length > 0) {
+
+                formHTML = recentResults.map(result => `
 
                     <span class="form-badge form-${result}">
                         ${result}
                     </span>
 
-                `).join("")
+                `).join("");
 
-                : Array(5).fill(`
+            } else {
+
+                formHTML = Array(5).fill(`
 
                     <span class="form-badge form-empty">
                         -
                     </span>
 
                 `).join("");
+
+            }
 
 
             cells = `
@@ -373,9 +379,7 @@ function renderTeams(mode) {
                 <td>
 
                     <div class="form-results">
-
                         ${formHTML}
-
                     </div>
 
                 </td>
@@ -384,6 +388,8 @@ function renderTeams(mode) {
 
         }
 
+
+        // Crear fila
 
         const row = document.createElement("tr");
 
@@ -397,29 +403,32 @@ function renderTeams(mode) {
 
 
 // =====================================
-// CAMBIAR PESTAÑA
+// 8. CAMBIAR ENTRE SHORT, FULL Y FORM
 // =====================================
 
 function changeTab(mode) {
 
-    // Actualizar botón activo
+    if (!columns[mode]) {
+        return;
+    }
+
+    // Actualizar pestaña seleccionada
 
     tabs.forEach(tab => {
 
-        tab.classList.toggle(
-            "active",
-            tab.dataset.tab === mode
-        );
+        const isActive = tab.dataset.tab === mode;
+
+        tab.classList.toggle("active", isActive);
 
     });
 
 
-    // Identificar vista actual para el CSS
+    // Actualizar modo de la tabla
 
     standingsTable.dataset.mode = mode;
 
 
-    // Actualizar tabla
+    // Actualizar encabezados y filas
 
     renderHeader(mode);
 
@@ -429,16 +438,16 @@ function changeTab(mode) {
 
 
 // =====================================
-// EVENTOS DE LAS PESTAÑAS
+// 9. EVENTOS DE LAS PESTAÑAS
 // =====================================
 
 tabs.forEach(tab => {
 
     tab.addEventListener("click", () => {
 
-        const selectedTab = tab.dataset.tab;
+        const selectedMode = tab.dataset.tab;
 
-        changeTab(selectedTab);
+        changeTab(selectedMode);
 
     });
 
@@ -446,7 +455,7 @@ tabs.forEach(tab => {
 
 
 // =====================================
-// MENÚ LATERAL
+// 10. MENÚ LATERAL
 // =====================================
 
 const menuButton = document.getElementById("menuButton");
@@ -464,24 +473,24 @@ function toggleMenu() {
 
     menuButton.setAttribute(
         "aria-expanded",
-        isOpen.toString()
+        String(isOpen)
     );
 
 }
 
 
-// Abrir y cerrar menú
+// Abrir menú
 
 menuButton.addEventListener("click", toggleMenu);
 
 
-// Cerrar al presionar fuera
+// Cerrar menú al tocar fuera
 
 overlay.addEventListener("click", toggleMenu);
 
 
 // =====================================
-// INICIALIZAR SISTEMA
+// 11. INICIALIZAR SISTEMA
 // =====================================
 
 changeTab("short");
