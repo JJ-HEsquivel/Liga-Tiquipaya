@@ -3,107 +3,119 @@
 // 1. EQUIPOS DEL CAMPEONATO
 // =====================================
 
-const teams = [
+const roster = [
+    "TEAM GLS",
+    "PARADISÍACO FC",
+    "INDEPENDIENTE",
+    "OLYMPIC",
+    "SUDAMERICANOS",
+    "FRANSISQUIÑOS",
+    "FC AMIGOS",
+    "CARNICERIA FC"
+];
 
-    {
-        name: "PARADISÍACO FC",
-        played: 0,
-        wins: 0,
-        draws: 0,
-        losses: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
-        points: 0,
-        next: "-",
-        form: []
+const matches = {
+    "f1-fransisquinos-independiente": {
+        round: 1,
+        kickoff: "2026-11-11T19:20:00-04:00",
+        home: "FRANSISQUIÑOS",
+        away: "INDEPENDIENTE",
+        score: [8, 6],
+        status: "finished"
     },
-
-    {
-        name: "INDEPENDIENTE",
-        played: 0,
-        wins: 0,
-        draws: 0,
-        losses: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
-        points: 0,
-        next: "-",
-        form: []
+    "f1-amigos-sudamericanos": {
+        round: 1,
+        kickoff: "2026-11-11T20:20:00-04:00",
+        home: "FC AMIGOS",
+        away: "SUDAMERICANOS",
+        score: [3, 8],
+        status: "finished"
     },
+    "f1-paradisiaco-olympic": {
+        round: 1,
+        kickoff: "2026-11-11T21:20:00-04:00",
+        home: "PARADISÍACO FC",
+        away: "OLYMPIC",
+        score: [13, 3],
+        status: "finished"
+    }
+};
 
-    {
-        name: "OLYMPIC",
-        played: 0,
-        wins: 0,
-        draws: 0,
-        losses: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
-        points: 0,
-        next: "-",
-        form: []
-    },
+const finishedMatches = Object.values(matches)
+    .filter(match => match.status === "finished")
+    .sort((first, second) => Date.parse(first.kickoff) - Date.parse(second.kickoff));
 
-    {
-        name: "SUDAMERICANOS",
-        played: 0,
-        wins: 0,
-        draws: 0,
-        losses: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
-        points: 0,
-        next: "-",
-        form: []
-    },
+const standings = new Map(roster.map(name => [name, {
+    name,
+    played: 0,
+    wins: 0,
+    draws: 0,
+    losses: 0,
+    gf: 0,
+    ga: 0,
+    gd: 0,
+    points: 0,
+    next: "-",
+    form: []
+}]));
 
-    {
-        name: "FRANSISQUIÑOS",
-        played: 0,
-        wins: 0,
-        draws: 0,
-        losses: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
-        points: 0,
-        next: "-",
-        form: []
-    },
+function recordResult(team, goalsFor, goalsAgainst) {
+    team.played++;
+    team.gf += goalsFor;
+    team.ga += goalsAgainst;
+    team.gd = team.gf - team.ga;
 
-    {
-        name: "FC AMIGOS",
-        played: 0,
-        wins: 0,
-        draws: 0,
-        losses: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
-        points: 0,
-        next: "-",
-        form: []
-    },
+    if (goalsFor > goalsAgainst) {
+        team.wins++;
+        team.points += 3;
+        team.form.push("W");
+    } else if (goalsFor === goalsAgainst) {
+        team.draws++;
+        team.points++;
+        team.form.push("D");
+    } else {
+        team.losses++;
+        team.form.push("L");
+    }
+}
 
-    {
-        name: "CARNICERIA FC",
-        played: 0,
-        wins: 0,
-        draws: 0,
-        losses: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
-        points: 0,
-        next: "-",
-        form: []
+for (const { home, away, score: [homeGoals, awayGoals] } of finishedMatches) {
+    recordResult(standings.get(home), homeGoals, awayGoals);
+    recordResult(standings.get(away), awayGoals, homeGoals);
+}
+
+const teams = [...standings.values()].sort((first, second) =>
+    second.points - first.points || second.gd - first.gd || second.gf - first.gf
+);
+
+function renderResults() {
+    const results = document.getElementById("results");
+    const rounds = new Map();
+
+    for (const match of finishedMatches) {
+        if (!rounds.has(match.round)) {
+            rounds.set(match.round, []);
+        }
+        rounds.get(match.round).push(match);
     }
 
-];
+    results.innerHTML = Array.from(rounds, ([round, games]) => `
+        <section>
+            <h2>Fecha ${round}</h2>
+            <div>
+                ${games.map(({ kickoff, home, away, score }) => {
+                    const [year, month, day] = kickoff.slice(0, 10).split("-");
+                    return `
+                        <p>
+                            <time datetime="${kickoff}">${day}/${month}/${year} · ${kickoff.slice(11, 16)}</time><br>
+                            ${home} <strong>${score.join("–")}</strong> ${away}
+                        </p>
+                    `;
+                }).join("")}
+            </div>
+        </section>
+    `).join("");
+}
 
 
 // =====================================
@@ -447,6 +459,7 @@ menuButton.addEventListener("click", toggleMenu);
 // Cerrar menú al tocar fuera
 
 overlay.addEventListener("click", toggleMenu);
+sidebar.querySelector('a[href="#results"]').addEventListener("click", toggleMenu);
 
 
 // =====================================
@@ -454,3 +467,4 @@ overlay.addEventListener("click", toggleMenu);
 // =====================================
 
 changeTab("short");
+renderResults();
