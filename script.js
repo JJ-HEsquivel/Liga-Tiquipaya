@@ -104,22 +104,44 @@ function renderResults() {
         rounds.get(match.round).push(match);
     }
 
-    results.innerHTML = Array.from(rounds, ([round, games]) => `
-        <section class="results-round">
-            <h2>Fecha ${round}</h2>
-            <div>
-                ${games.map(({ kickoff, home, away, score }) => {
-                    const [year, month, day] = kickoff.slice(0, 10).split("-");
-                    return `
-                        <p class="result-match">
-                            <time datetime="${kickoff}">${day}/${month}/${year} · ${kickoff.slice(11, 16)}</time><br>
-                            ${home} <strong>${score.join("–")}</strong> ${away}
-                        </p>
-                    `;
-                }).join("")}
-            </div>
-        </section>
-    `).join("");
+    const dateLabel = date => date.split("-").reverse().join("/");
+
+    results.innerHTML = `
+        <h2 class="results-phase">Ronda de ida</h2>
+        ${Array.from(rounds, ([round, games]) => {
+            const dates = [...new Set(games.map(game => game.kickoff.slice(0, 10)))];
+            const dateRange = dates.length === 1
+                ? dateLabel(dates[0])
+                : dateLabel(dates[0]) + " – " + dateLabel(dates[dates.length - 1]);
+
+            return `
+                <section class="results-round">
+                    <header class="round-heading">
+                        <h3>Fecha ${round}</h3>
+                        <p>${dateRange}</p>
+                    </header>
+                    <ul class="round-matches">
+                        ${games.map(({ kickoff, home, away, score }) => `
+                            <li class="result-match">
+                                <div class="result-team result-home">
+                                    <span>${home}</span>
+                                    ${renderTeamLogo(home)}
+                                </div>
+                                <div class="result-score">
+                                    <strong>${score.join("–")}</strong>
+                                    <time datetime="${kickoff}">${kickoff.slice(11, 16)}</time>
+                                </div>
+                                <div class="result-team result-away">
+                                    ${renderTeamLogo(away)}
+                                    <span>${away}</span>
+                                </div>
+                            </li>
+                        `).join("")}
+                    </ul>
+                </section>
+            `;
+        }).join("")}
+    `;
 }
 
 
@@ -210,17 +232,19 @@ function getInitials(name) {
 // 6. GENERAR CELDA DEL EQUIPO
 // =====================================
 
-function renderTeamCell(team) {
-
-    const crest = teamCrests[team.name];
-    const logo = crest
+function renderTeamLogo(name) {
+    const crest = teamCrests[name];
+    return crest
         ? `<img class="team-logo team-crest" src="${crest}" alt="" decoding="async">`
-        : `<div class="team-logo">${getInitials(team.name)}</div>`;
+        : `<div class="team-logo">${getInitials(name)}</div>`;
+}
+
+function renderTeamCell(team) {
 
     return `
         <div class="team-cell">
 
-            ${logo}
+            ${renderTeamLogo(team.name)}
 
             <span class="team-name">
                 ${team.name}
