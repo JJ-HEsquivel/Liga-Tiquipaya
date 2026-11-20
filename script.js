@@ -14,6 +14,11 @@ const roster = [
     "CARNICERIA FC"
 ];
 
+const teamCrests = {
+    "TEAM GLS": "assets/team-gls.png",
+    "SUDAMERICANOS": "assets/sudamericanos.png"
+};
+
 const matches = {
     "f1-fransisquinos-independiente": {
         round: 1,
@@ -100,13 +105,13 @@ function renderResults() {
     }
 
     results.innerHTML = Array.from(rounds, ([round, games]) => `
-        <section>
+        <section class="results-round">
             <h2>Fecha ${round}</h2>
             <div>
                 ${games.map(({ kickoff, home, away, score }) => {
                     const [year, month, day] = kickoff.slice(0, 10).split("-");
                     return `
-                        <p>
+                        <p class="result-match">
                             <time datetime="${kickoff}">${day}/${month}/${year} · ${kickoff.slice(11, 16)}</time><br>
                             ${home} <strong>${score.join("–")}</strong> ${away}
                         </p>
@@ -207,14 +212,15 @@ function getInitials(name) {
 
 function renderTeamCell(team) {
 
-    const initials = getInitials(team.name);
+    const crest = teamCrests[team.name];
+    const logo = crest
+        ? `<img class="team-logo team-crest" src="${crest}" alt="" decoding="async">`
+        : `<div class="team-logo">${getInitials(team.name)}</div>`;
 
     return `
         <div class="team-cell">
 
-            <div class="team-logo">
-                ${initials}
-            </div>
+            ${logo}
 
             <span class="team-name">
                 ${team.name}
@@ -459,7 +465,37 @@ menuButton.addEventListener("click", toggleMenu);
 // Cerrar menú al tocar fuera
 
 overlay.addEventListener("click", toggleMenu);
-sidebar.querySelector('a[href="#results"]').addEventListener("click", toggleMenu);
+const viewLinks = sidebar.querySelectorAll('a[href="#standings"], a[href="#results"]');
+const standingsView = document.getElementById("standings");
+const resultsView = document.getElementById("results");
+const viewTitle = document.getElementById("viewTitle");
+
+function showView() {
+    const showingResults = window.location.hash === "#results";
+    standingsView.hidden = showingResults;
+    resultsView.hidden = !showingResults;
+    viewTitle.textContent = showingResults ? "Resultados" : "Tabla";
+
+    for (const link of viewLinks) {
+        const selected = link.hash === (showingResults ? "#results" : "#standings");
+        link.classList.toggle("active", selected);
+        if (selected) {
+            link.setAttribute("aria-current", "page");
+        } else {
+            link.removeAttribute("aria-current");
+        }
+    }
+}
+
+for (const link of viewLinks) {
+    link.addEventListener("click", () => {
+        if (sidebar.classList.contains("open")) {
+            toggleMenu();
+        }
+    });
+}
+
+window.addEventListener("hashchange", showView);
 
 
 // =====================================
@@ -468,3 +504,4 @@ sidebar.querySelector('a[href="#results"]').addEventListener("click", toggleMenu
 
 changeTab("short");
 renderResults();
+showView();

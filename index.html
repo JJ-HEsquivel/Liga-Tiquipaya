@@ -62,7 +62,7 @@
 
         <div class="sidebar-title">TIQUI LEAGUE</div>
 
-        <a href="#" class="active">Tabla de posiciones</a>
+        <a href="#standings" class="active" aria-current="page">Tabla de posiciones</a>
         <a href="#">Equipos</a>
         <a href="#">Calendario</a>
         <a href="#results">Resultados</a>
@@ -81,7 +81,7 @@
                 COMPETICIÓN OFICIAL
             </span>
 
-            <h1>Tabla</h1>
+            <h1 id="viewTitle">Tabla</h1>
 
             <p>TEAM GLS</p>
 
@@ -95,40 +95,41 @@
     <!-- CONTENIDO PRINCIPAL -->
     <main class="main-container">
 
-        <!-- PESTAÑAS -->
-        <section class="tabs-container">
+        <div id="standings">
+            <!-- PESTAÑAS -->
+            <section class="tabs-container">
 
-            <button class="tab active" data-tab="short">
-                Short
-            </button>
+                <button class="tab active" data-tab="short">
+                    Short
+                </button>
 
-            <button class="tab" data-tab="full">
-                Full
-            </button>
+                <button class="tab" data-tab="full">
+                    Full
+                </button>
 
-            <button class="tab" data-tab="form">
-                Form
-            </button>
+                <button class="tab" data-tab="form">
+                    Form
+                </button>
 
-        </section>
-
-
-        <!-- TABLA -->
-        <section class="table-container">
-
-            <table class="standings-table"
-                   id="standingsTable">
-
-                <thead id="tableHead"></thead>
-
-                <tbody id="tableBody"></tbody>
-
-            </table>
-
-        </section>
+            </section>
 
 
-        <div id="results"></div>
+            <!-- TABLA -->
+            <section class="table-container">
+
+                <table class="standings-table"
+                       id="standingsTable">
+
+                    <thead id="tableHead"></thead>
+
+                    <tbody id="tableBody"></tbody>
+
+                </table>
+
+            </section>
+        </div>
+
+        <div id="results" hidden></div>
 
         <!-- PIE DE PÁGINA -->
         <footer class="footer">

@@ -757,3 +757,39 @@ body {
     }
 
 }
+
+.team-logo.team-crest {
+    object-fit: contain;
+    background: none;
+    border: 0;
+    border-radius: 0;
+}
+
+.results-round {
+    padding: 16px;
+    background: #210529;
+    border-radius: 12px;
+}
+
+.results-round + .results-round {
+    margin-top: 12px;
+}
+
+.results-round h2 {
+    font-size: 18px;
+}
+
+.result-match {
+    padding: 12px 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.result-match + .result-match {
+    border-top: 1px solid var(--border);
+}
+
+.result-match time {
+    color: var(--text-muted);
+    font-size: 12px;
+}
