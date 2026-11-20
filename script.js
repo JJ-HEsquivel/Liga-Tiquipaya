@@ -279,29 +279,43 @@ const standings = new Map(roster.map(name => [name, {
     form: []
 }]));
 
-function recordResult(team, goalsFor, goalsAgainst) {
+function recordOutcome(team, outcome) {
     team.played++;
-    team.gf += goalsFor;
-    team.ga += goalsAgainst;
-    team.gd = team.gf - team.ga;
+    team.form.push(outcome);
 
-    if (goalsFor > goalsAgainst) {
+    if (outcome === "W") {
         team.wins++;
         team.points += 3;
-        team.form.push("W");
-    } else if (goalsFor === goalsAgainst) {
+    } else if (outcome === "D") {
         team.draws++;
         team.points++;
-        team.form.push("D");
     } else {
         team.losses++;
-        team.form.push("L");
     }
 }
 
-for (const { home, away, score: [homeGoals, awayGoals] } of finishedMatches) {
-    recordResult(standings.get(home), homeGoals, awayGoals);
-    recordResult(standings.get(away), awayGoals, homeGoals);
+function recordGoals(team, goalsFor, goalsAgainst) {
+    team.gf += goalsFor;
+    team.ga += goalsAgainst;
+    team.gd = team.gf - team.ga;
+}
+
+for (const { home, away, score, walkoverTeam, status } of reportedMatches) {
+    const homeTeam = standings.get(home);
+    const awayTeam = standings.get(away);
+
+    if (status === "walkover") {
+        const homeLost = walkoverTeam === home;
+        recordOutcome(homeTeam, homeLost ? "L" : "W");
+        recordOutcome(awayTeam, homeLost ? "W" : "L");
+        continue;
+    }
+
+    const [homeGoals, awayGoals] = score;
+    recordGoals(homeTeam, homeGoals, awayGoals);
+    recordGoals(awayTeam, awayGoals, homeGoals);
+    recordOutcome(homeTeam, homeGoals > awayGoals ? "W" : homeGoals === awayGoals ? "D" : "L");
+    recordOutcome(awayTeam, awayGoals > homeGoals ? "W" : homeGoals === awayGoals ? "D" : "L");
 }
 
 const teams = [...standings.values()].sort((first, second) =>
