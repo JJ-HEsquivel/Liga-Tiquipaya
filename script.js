@@ -67,15 +67,67 @@ const matches = {
         away: "TEAM GLS",
         score: [6, 8],
         status: "finished"
+    },
+    "2026-11-17-1920-OLY-CAR": {
+        round: 3,
+        kickoff: "2026-11-17T19:20:00-04:00",
+        home: "OLYMPIC",
+        away: "CARNICERIA FC",
+        score: [2, 6],
+        status: "finished",
+        players: {
+            "matias-pereyra": { name: "Matías Pereyra", team: "OLYMPIC", shirt: 13, goals: 2 },
+            "alan-pierola": { name: "Alan Pierola", team: "CARNICERIA FC", shirt: 11, goals: 1 },
+            "nicolas-rodriguez": { name: "Nicolás Rodríguez", team: "CARNICERIA FC", shirt: 7, goals: 1 },
+            "erick-rojas": { name: "Erick Rojas", team: "CARNICERIA FC", shirt: 66, goals: 2 },
+            "ronaldo-aviles": { name: "Ronaldo Avilés", team: "CARNICERIA FC", shirt: 10, goals: 1 },
+            "pablo-triana": { name: "Pablo Triana", team: "CARNICERIA FC", shirt: 8, goals: 1 },
+            "raul-ortiz": { name: "Raúl Ortiz", team: "CARNICERIA FC", shirt: 8 }
+        }
+    },
+    "2026-11-17-2020-FCA-GLS": {
+        round: 3,
+        kickoff: "2026-11-17T20:20:00-04:00",
+        home: "FC AMIGOS",
+        away: "TEAM GLS",
+        score: [3, 10],
+        status: "finished",
+        players: {
+            "rodrigo-melgarejo": { name: "Rodrigo Melgarejo", team: "FC AMIGOS", shirt: 9, goals: 1 },
+            "jorge-calancho": {
+                name: "Jorge Calancho", team: "FC AMIGOS", shirt: 3, goals: 1,
+                redCards: 1, yellowCards: 0, redCardReason: "doble amonestación"
+            },
+            "jose-andrade": {
+                name: "José Andrade", team: "FC AMIGOS", shirt: 6, goals: 1,
+                redCards: 1, yellowCards: 0, redCardReason: "doble amonestación"
+            },
+            "grover-felipe": { name: "Grover Felipe", team: "TEAM GLS", shirt: 19, goals: 1 },
+            "gonzalo-lozano": { name: "Gonzalo Lozano", team: "TEAM GLS", shirt: 33, goals: 1 },
+            "fabricio-mariaca": { name: "Fabricio Mariaca", team: "TEAM GLS", shirt: 20, goals: 4 },
+            "guillermo-castanon": { name: "Guillermo Castañón", team: "TEAM GLS", shirt: 13, goals: 3 },
+            "cristian-bautista": { name: "Cristian Bautista", team: "TEAM GLS", shirt: 11, goals: 1 },
+            "romario-torres": { name: "Romario Torres", team: "TEAM GLS", shirt: 8, yellowCards: 1 }
+        }
+    },
+    "2026-11-17-PAR-IND-WO": {
+        round: 3,
+        date: "2026-11-17",
+        home: "PARADISÍACO FC",
+        away: "INDEPENDIENTE",
+        status: "walkover",
+        walkoverTeam: "INDEPENDIENTE"
     }
 };
 
-const finishedMatches = Object.values(matches)
-    .filter(match => match.status === "finished")
+const reportedMatches = Object.values(matches)
+    .filter(match => match.status === "finished" || match.status === "walkover")
     .sort((first, second) =>
         matchDate(first).localeCompare(matchDate(second)) ||
-        (first.kickoff ?? "").localeCompare(second.kickoff ?? "")
+        (first.kickoff ?? "z").localeCompare(second.kickoff ?? "z")
     );
+
+const finishedMatches = reportedMatches.filter(match => match.status === "finished");
 
 function matchDate(match) {
     return match.date ?? match.kickoff.slice(0, 10);
@@ -124,11 +176,27 @@ const teams = [...standings.values()].sort((first, second) =>
     second.points - first.points || second.gd - first.gd || second.gf - first.gf
 );
 
+function getPlayerTotals() {
+    const totals = new Map();
+
+    for (const match of finishedMatches) {
+        for (const [id, player] of Object.entries(match.players ?? {})) {
+            const total = totals.get(id) ?? { name: player.name, goals: 0, yellowCards: 0, redCards: 0 };
+            total.goals += player.goals ?? 0;
+            total.yellowCards += player.yellowCards ?? 0;
+            total.redCards += player.redCards ?? 0;
+            totals.set(id, total);
+        }
+    }
+
+    return totals;
+}
+
 function renderResults() {
     const results = document.getElementById("results");
     const rounds = new Map();
 
-    for (const match of finishedMatches) {
+    for (const match of reportedMatches) {
         if (!rounds.has(match.round)) {
             rounds.set(match.round, []);
         }
@@ -152,14 +220,16 @@ function renderResults() {
                         <p>${dateRange}</p>
                     </header>
                     <ul class="round-matches">
-                        ${games.map(({ kickoff, home, away, score }) => `
+                        ${games.map(({ kickoff, home, away, score, walkoverTeam }) => `
                             <li class="result-match">
                                 <div class="result-team result-home">
                                     <span>${home}</span>
                                     ${renderTeamLogo(home)}
                                 </div>
                                 <div class="result-score">
-                                    <strong>${score.join("–")}</strong>
+                                    ${walkoverTeam
+                                        ? `<abbr title="Walkover de ${walkoverTeam}" aria-label="Walkover de ${walkoverTeam}">WO</abbr>`
+                                        : `<strong>${score.join("–")}</strong>`}
                                     ${kickoff ? `<time datetime="${kickoff}">${kickoff.slice(11, 16)}</time>` : ""}
                                 </div>
                                 <div class="result-team result-away">
