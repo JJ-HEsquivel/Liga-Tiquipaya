@@ -77,7 +77,7 @@ const matches = {
         status: "finished",
         players: {
             "matias-pereyra": { name: "Matías Pereyra", team: "OLYMPIC", shirt: 13, goals: 2 },
-            "alan-pierola": { name: "Alan Pierola", team: "CARNICERIA FC", shirt: 11, goals: 1 },
+            "alan-pierola": { name: "Alan Piérola", team: "CARNICERIA FC", shirt: 11, goals: 1 },
             "nicolas-rodriguez": { name: "Nicolás Rodríguez", team: "CARNICERIA FC", shirt: 7, goals: 1 },
             "erick-rojas": { name: "Erick Rojas", team: "CARNICERIA FC", shirt: 66, goals: 2 },
             "ronaldo-aviles": { name: "Ronaldo Avilés", team: "CARNICERIA FC", shirt: 10, goals: 1 },
@@ -119,6 +119,138 @@ const matches = {
         walkoverTeam: "INDEPENDIENTE"
     }
 };
+
+Object.assign(matches, {
+    "2026-11-18-1920-SUD-GLS": {
+        round: 4,
+        kickoff: "2026-11-18T19:20:00-04:00",
+        home: "SUDAMERICANOS",
+        away: "TEAM GLS",
+        score: [7, 3],
+        status: "finished",
+        players: {
+            "juan-jose-huanca": { name: "Juan José Huanca", team: "SUDAMERICANOS", goals: 2 },
+            "daner-flores": { name: "Daner Flores", team: "SUDAMERICANOS", goals: 1 },
+            "miguel-salgado": { name: "Miguel Salgado", team: "SUDAMERICANOS", goals: 3 },
+            "jose-manuel-ramos": { name: "José Manuel Ramos", team: "SUDAMERICANOS", goals: 1 },
+            "danner-garcia": { name: "Danner García", team: "TEAM GLS", goals: 3, yellowCards: 1 },
+            "cristian-bautista": { name: "Cristian Bautista", team: "TEAM GLS", goals: 0 }
+        },
+        fines: {
+            "SUDAMERICANOS": {  },
+            "TEAM GLS": { cintillo: 10, balon: 15, firma: 10, amarillas: 5 }
+        }
+    },
+    "2026-11-18-2020-PAR-FRA": {
+        round: 4,
+        kickoff: "2026-11-18T20:20:00-04:00",
+        home: "PARADISÍACO FC",
+        away: "FRANSISQUIÑOS",
+        score: [3, 5],
+        status: "finished",
+        players: {
+            "luis-liriaga": { name: "Luis Liriaga", team: "PARADISÍACO FC", goals: 3 },
+            "ignacio-pasquido": { name: "Ignacio Pasquido", team: "FRANSISQUIÑOS", goals: 3 },
+            "hugo-carvajal": { name: "Hugo Carvajal", team: "FRANSISQUIÑOS", goals: 2 }
+        },
+        fines: {
+            "PARADISÍACO FC": { firma: 10 },
+            "FRANSISQUIÑOS": { firma: 10 }
+        }
+    },
+    "2026-11-18-2110-IND-CAR": {
+        round: 4,
+        kickoff: "2026-11-18T21:10:00-04:00",
+        home: "INDEPENDIENTE",
+        away: "CARNICERIA FC",
+        score: [5, 3],
+        status: "finished",
+        players: {
+            "rodrigo-mamani": { name: "Rodrigo Mamani", team: "INDEPENDIENTE", goals: 1, yellowCards: 1 },
+            "alex-ramirez": { name: "Álex Ramírez", team: "INDEPENDIENTE", goals: 1, yellowCards: 0, redCards: 1, redCardReason: "directa" },
+            "gael-chalan": { name: "Gael Chalán", team: "INDEPENDIENTE", goals: 1, yellowCards: 1 },
+            "benjamin-bautista": { name: "Benjamín Bautista", team: "INDEPENDIENTE", goals: 1 },
+            "jair-chiri": { name: "Jair Chiri", team: "INDEPENDIENTE", goals: 1 },
+            "pablo-triana": { name: "Pablo Triana", team: "CARNICERIA FC", goals: 2 },
+            "erick-rojas": { name: "Erick Rojas", team: "CARNICERIA FC", goals: 1, yellowCards: 1 },
+            "ronaldo-aviles": { name: "Ronaldo Avilés", team: "CARNICERIA FC", goals: 0, yellowCards: 0, redCards: 1, redCardReason: "directa" },
+            "alan-pierola": { name: "Alan Piérola", team: "CARNICERIA FC", goals: 0, yellowCards: 0, redCards: 1, redCardReason: "doble amonestación" }
+        },
+        unresolvedPlayers: [
+            { team: "CARNICERIA FC", shirt: 30, possiblePlayerIds: ["paul-ortiz","raul-ortiz"], goals: 0, yellowCards: 0, redCards: 0 }
+        ],
+        fines: {
+            "INDEPENDIENTE": { cintillo: 10, balon: 15, firma: 10, amarillas: 10, rojas: 20 },
+            "CARNICERIA FC": { amarillas: 5, rojas: 40 }
+        }
+    },
+    "2026-11-19-1920-OLY-GLS": {
+        round: 5,
+        kickoff: "2026-11-19T19:20:00-04:00",
+        home: "OLYMPIC",
+        away: "TEAM GLS",
+        score: [4, 9],
+        status: "finished",
+        players: {
+            "richard-anturiano": { name: "Richard Anturiano", team: "OLYMPIC", goals: 1 },
+            "mauricio-cardenas": { name: "Mauricio Cárdenas", team: "OLYMPIC", goals: 1 },
+            "roberto-penaloza": { name: "Roberto Peñaloza", team: "OLYMPIC", goals: 1 },
+            "max-achepa": { name: "Max Achepa", team: "OLYMPIC", goals: 1 },
+            "fabricio-mariaca": { name: "Fabricio Mariaca", team: "TEAM GLS", goals: 2, yellowCards: 1 },
+            "gonzalo-lozano": { name: "Gonzalo Lozano", team: "TEAM GLS", goals: 2 },
+            "grover-felipe": { name: "Grover Felipe", team: "TEAM GLS", goals: 5 }
+        },
+        fines: {
+            "OLYMPIC": {  },
+            "TEAM GLS": { cintillo: 10, balon: 15, firma: 10, amarillas: 5 }
+        }
+    },
+    "2026-11-19-CAR-FCA": {
+        round: 5,
+        date: "2026-11-19",
+        home: "CARNICERIA FC",
+        away: "FC AMIGOS",
+        score: [7, 3],
+        status: "finished",
+        players: {
+            "alan-pierola": { name: "Alan Piérola", team: "CARNICERIA FC", goals: 1 },
+            "erick-rojas": { name: "Erick Rojas", team: "CARNICERIA FC", goals: 4 },
+            "cristian-vasquez": { name: "Cristian Vásquez", team: "CARNICERIA FC", goals: 1 },
+            "raul-ortiz": { name: "Raúl Ortiz", team: "CARNICERIA FC", shirt: 7, goals: 1 },
+            "alvaro-capillas": { name: "Álvaro Capillas", team: "FC AMIGOS", goals: 1 },
+            "edilson-sanchez": { name: "Edilson Sánchez", team: "FC AMIGOS", goals: 1 },
+            "jose-andrade": { name: "José Andrade", team: "FC AMIGOS", goals: 1 }
+        },
+        fines: {
+            "CARNICERIA FC": { firma: 10 },
+            "FC AMIGOS": { firma: 10 }
+        }
+    },
+    "2026-11-19-PAR-SUD": {
+        round: 5,
+        date: "2026-11-19",
+        home: "PARADISÍACO FC",
+        away: "SUDAMERICANOS",
+        score: [7, 7],
+        status: "finished",
+        players: {
+            "patrick-mena": { name: "Patrick Mena", team: "PARADISÍACO FC", goals: 1 },
+            "carlos-delgadillo": { name: "Carlos Delgadillo", team: "PARADISÍACO FC", goals: 4 },
+            "rodrigo-jorge": { name: "Rodrigo Jorge", team: "PARADISÍACO FC", goals: 1 },
+            "carlos-mendo": { name: "Carlos Mendo", team: "PARADISÍACO FC", goals: 1, yellowCards: 1 },
+            "luis-liriaga": { name: "Luis Liriaga", team: "PARADISÍACO FC", goals: 0, yellowCards: 1 },
+            "marvin-melgarejo": { name: "Marvin Melgarejo", team: "SUDAMERICANOS", goals: 2 },
+            "miguel-angel-huanca": { name: "Miguel Ángel Huanca", team: "SUDAMERICANOS", goals: 2 },
+            "juan-jose-huanca": { name: "Juan José Huanca", team: "SUDAMERICANOS", goals: 1 },
+            "jose-manuel-kama": { name: "José Manuel Kama", team: "SUDAMERICANOS", goals: 1 },
+            "michael-gonzales": { name: "Michael Gonzales", team: "SUDAMERICANOS", goals: 1 }
+        },
+        fines: {
+            "PARADISÍACO FC": { amarillas: 10 },
+            "SUDAMERICANOS": {  }
+        }
+    }
+});
 
 const reportedMatches = Object.values(matches)
     .filter(match => match.status === "finished" || match.status === "walkover")
