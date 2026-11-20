@@ -43,12 +43,43 @@ const matches = {
         away: "OLYMPIC",
         score: [13, 3],
         status: "finished"
+    },
+    "2026-11-12-FRA-SUD": {
+        round: 2,
+        date: "2026-11-12",
+        home: "FRANSISQUIÑOS",
+        away: "SUDAMERICANOS",
+        score: [12, 4],
+        status: "finished"
+    },
+    "2026-11-12-OLY-FCA": {
+        round: 2,
+        date: "2026-11-12",
+        home: "OLYMPIC",
+        away: "FC AMIGOS",
+        score: [4, 10],
+        status: "finished"
+    },
+    "2026-11-12-CAR-GLS": {
+        round: 2,
+        date: "2026-11-12",
+        home: "CARNICERIA FC",
+        away: "TEAM GLS",
+        score: [6, 8],
+        status: "finished"
     }
 };
 
 const finishedMatches = Object.values(matches)
     .filter(match => match.status === "finished")
-    .sort((first, second) => Date.parse(first.kickoff) - Date.parse(second.kickoff));
+    .sort((first, second) =>
+        matchDate(first).localeCompare(matchDate(second)) ||
+        (first.kickoff ?? "").localeCompare(second.kickoff ?? "")
+    );
+
+function matchDate(match) {
+    return match.date ?? match.kickoff.slice(0, 10);
+}
 
 const standings = new Map(roster.map(name => [name, {
     name,
@@ -109,7 +140,7 @@ function renderResults() {
     results.innerHTML = `
         <h2 class="results-phase">Ronda de ida</h2>
         ${Array.from(rounds, ([round, games]) => {
-            const dates = [...new Set(games.map(game => game.kickoff.slice(0, 10)))];
+            const dates = [...new Set(games.map(matchDate))];
             const dateRange = dates.length === 1
                 ? dateLabel(dates[0])
                 : dateLabel(dates[0]) + " – " + dateLabel(dates[dates.length - 1]);
@@ -129,7 +160,7 @@ function renderResults() {
                                 </div>
                                 <div class="result-score">
                                     <strong>${score.join("–")}</strong>
-                                    <time datetime="${kickoff}">${kickoff.slice(11, 16)}</time>
+                                    ${kickoff ? `<time datetime="${kickoff}">${kickoff.slice(11, 16)}</time>` : ""}
                                 </div>
                                 <div class="result-team result-away">
                                     ${renderTeamLogo(away)}
