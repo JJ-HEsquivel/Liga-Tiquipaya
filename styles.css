@@ -340,6 +340,16 @@ body {
     text-align: left;
 }
 
+.standings-table[data-mode="full"] th:nth-child(2) {
+    width: 30%;
+}
+
+.standings-table .team-name {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
 .standings-table td {
     padding: 18px 5px;
 
@@ -572,7 +582,7 @@ body {
 
     /* ---------------------------------
        SHORT: 6 COLUMNAS
-       Pos / Team / Pl / W / GD / Pts
+       Pos / Equipo / PJ / V / DG / Pts
     --------------------------------- */
 
     .standings-table[data-mode="short"] th:nth-child(1),
@@ -609,8 +619,8 @@ body {
 
     /* ---------------------------------
        FULL: 11 COLUMNAS
-       Pos / Team / Pl / W / D / L /
-       GF / GA / GD / Pts / Next
+       Pos / Equipo / PJ / V / E / D /
+       GF / GC / DG / Pts / Próx.
     --------------------------------- */
 
     .standings-table[data-mode="full"] th:nth-child(1),
@@ -639,7 +649,7 @@ body {
 
     /* ---------------------------------
        FORM: 3 COLUMNAS
-       Pos / Team / Form
+       Pos / Equipo / Racha
     --------------------------------- */
 
     .standings-table[data-mode="form"] th:nth-child(1),

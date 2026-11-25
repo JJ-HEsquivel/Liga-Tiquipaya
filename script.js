@@ -413,34 +413,36 @@ const columns = {
 
     short: [
         "Pos.",
-        "Team",
-        "Pl",
-        "W",
-        "GD",
+        "Equipo",
+        "PJ",
+        "V",
+        "DG",
         "Pts."
     ],
 
     full: [
         "Pos.",
-        "Team",
-        "Pl",
-        "W",
+        "Equipo",
+        "PJ",
+        "V",
+        "E",
         "D",
-        "L",
         "GF",
-        "GA",
-        "GD",
+        "GC",
+        "DG",
         "Pts.",
-        "Next"
+        "Próx."
     ],
 
     form: [
         "Pos.",
-        "Team",
-        "Form"
+        "Equipo",
+        "Racha"
     ]
 
 };
+
+const formLabels = { W: "V", D: "E", L: "D" };
 
 
 // =====================================
@@ -601,7 +603,7 @@ function renderTeams(mode) {
                 formHTML = recentResults.map(result => `
 
                     <span class="form-badge form-${result}">
-                        ${result}
+                        ${formLabels[result]}
                     </span>
 
                 `).join("");
