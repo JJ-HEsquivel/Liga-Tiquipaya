@@ -16,7 +16,13 @@ const roster = [
 
 const teamCrests = {
     "TEAM GLS": "assets/team-gls.png",
-    "SUDAMERICANOS": "assets/sudamericanos.png"
+    "SUDAMERICANOS": "assets/sudamericanos.png",
+    "PARADISÍACO FC": "assets/paradisiaco.png",
+    "INDEPENDIENTE": "assets/independiente.png",
+    "OLYMPIC": "assets/olympic.png",
+    "FRANSISQUIÑOS": "assets/fransisquinos.png",
+    "FC AMIGOS": "assets/fc-amigos.png",
+    "CARNICERIA FC": "assets/carniceria.png"
 };
 
 const matches = {
