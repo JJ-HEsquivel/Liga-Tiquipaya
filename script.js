@@ -516,6 +516,7 @@ function renderTeamCell(team) {
 // =====================================
 
 function renderTeams(mode) {
+    const mostPlayed = Math.max(0, ...teams.map(team => team.played));
 
     tableBody.innerHTML = "";
 
@@ -600,32 +601,12 @@ function renderTeams(mode) {
 
         else if (mode === "form") {
 
-            const recentResults = team.form.slice(-5);
-
-            let formHTML = "";
-
-            if (recentResults.length > 0) {
-
-                formHTML = recentResults.map(result => `
-
-                    <span class="form-badge form-${result}">
-                        ${formLabels[result]}
-                    </span>
-
-                `).join("");
-
-            } else {
-
-                formHTML = Array(5).fill(`
-
-                    <span class="form-badge form-empty">
-                        -
-                    </span>
-
-                `).join("");
-
-            }
-
+            const missingMatches = mostPlayed - team.played;
+            const formHTML = team.form.map(result => `
+                <span class="form-badge form-${result}">${formLabels[result]}</span>
+            `).join("") + `
+                <span class="form-badge form-empty" aria-label="Partido por igualar">-</span>
+            `.repeat(missingMatches);
 
             cells = `
 
