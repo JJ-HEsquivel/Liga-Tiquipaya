@@ -255,6 +255,72 @@ Object.assign(matches, {
             "PARADISÍACO FC": { amarillas: 10 },
             "SUDAMERICANOS": {  }
         }
+    },
+    "2026-11-24-1920-GLS-FRA": {
+        round: 6,
+        kickoff: "2026-11-24T19:20:00-04:00",
+        home: "TEAM GLS",
+        away: "FRANSISQUIÑOS",
+        score: [7, 4],
+        status: "finished",
+        players: {
+            "gonzalo-lozano": { name: "Gonzalo Lozano", team: "TEAM GLS", goals: 2, yellowCards: 1 },
+            "cristian-bautista": { name: "Cristian Bautista", team: "TEAM GLS", goals: 3 },
+            "fabricio-mariaca": { name: "Fabricio Mariaca", team: "TEAM GLS", goals: 2 },
+            "grover-felipe": { name: "Grover Felipe", team: "TEAM GLS", goals: 0, yellowCards: 1 },
+            "guillermo-castanon": { name: "Guillermo Castañón", team: "TEAM GLS", goals: 0, yellowCards: 1 },
+            "abel-mayta": { name: "Abel Mayta", team: "FRANSISQUIÑOS", goals: 1 },
+            "marvel-luna": { name: "Marvel Luna", team: "FRANSISQUIÑOS", goals: 1, yellowCards: 1 },
+            "gerald-carvajal": { name: "Gerald Carvajal", team: "FRANSISQUIÑOS", goals: 2 },
+            "josue-luna": { name: "Josué Luna", team: "FRANSISQUIÑOS", goals: 0, yellowCards: 1 }
+        },
+        fines: {
+            "TEAM GLS": { balon: 15, amarillas: 15 },
+            "FRANSISQUIÑOS": { firma: 10, amarillas: 10 }
+        }
+    },
+    "2026-11-24-2020-FCA-IND": {
+        round: 6,
+        kickoff: "2026-11-24T20:20:00-04:00",
+        home: "FC AMIGOS",
+        away: "INDEPENDIENTE",
+        score: [15, 3],
+        status: "finished",
+        players: {
+            "sergio-lopez": { name: "Sergio López", team: "FC AMIGOS", goals: 1 },
+            "jorge-calancho": { name: "Jorge Calancho", team: "FC AMIGOS", shirt: 3, goals: 5, yellowCards: 0, redCards: 1 },
+            "rodrigo-melgarejo": { name: "Rodrigo Melgarejo", team: "FC AMIGOS", goals: 4 },
+            "jose-andrade": { name: "José Andrade", team: "FC AMIGOS", goals: 2 },
+            "brayan-terrazas": { name: "Brayan Terrazas", team: "FC AMIGOS", goals: 3, yellowCards: 1 },
+            "vladimir-aguilar": { name: "Vladimir Aguilar", team: "INDEPENDIENTE", goals: 1 },
+            "jair-chiri": { name: "Jair Chiri", team: "INDEPENDIENTE", goals: 2 }
+        },
+        fines: {
+            "FC AMIGOS": { amarillas: 5, rojas: 20 },
+            "INDEPENDIENTE": { cintillo: 10, balon: 15, firma: 10 }
+        }
+    },
+    "2026-11-24-2120-PAR-CAR": {
+        round: 6,
+        kickoff: "2026-11-24T21:20:00-04:00",
+        home: "PARADISÍACO FC",
+        away: "CARNICERIA FC",
+        score: [4, 3],
+        status: "finished",
+        players: {
+            "kevin-oropeza": { name: "Kevin Oropeza", team: "PARADISÍACO FC", goals: 1 },
+            "paul-organdona": { name: "Paul Organdoña", team: "PARADISÍACO FC", goals: 1, yellowCards: 1 },
+            "oliver-colque": { name: "Oliver Colque", team: "PARADISÍACO FC", goals: 2, yellowCards: 1 },
+            "erick-rojas": { name: "Erick Rojas", team: "CARNICERIA FC", shirt: 69, goals: 3, yellowCards: 0, redCards: 1 },
+            "pablo-triana": { name: "Pablo Triana", team: "CARNICERIA FC", goals: 0, yellowCards: 1 }
+        },
+        unresolvedPlayers: [
+            { team: "PARADISÍACO FC", shirt: 13, goals: 0, yellowCards: 0, redCards: 1 }
+        ],
+        fines: {
+            "PARADISÍACO FC": { amarillas: 10, rojas: 20 },
+            "CARNICERIA FC": { amarillas: 5, rojas: 20 }
+        }
     }
 });
 
