@@ -321,6 +321,64 @@ Object.assign(matches, {
             "PARADISÍACO FC": { amarillas: 10, rojas: 20 },
             "CARNICERIA FC": { amarillas: 5, rojas: 20 }
         }
+    },
+    "2026-11-26-1920-CAR-FRA": {
+        round: 7,
+        kickoff: "2026-11-26T19:20:00-04:00",
+        home: "CARNICERIA FC",
+        away: "FRANSISQUIÑOS",
+        score: [5, 2],
+        status: "finished",
+        players: {
+            "alan-pierola": { name: "Alan Piérola", team: "CARNICERIA FC", goals: 2 },
+            "nicolas-rodriguez": { name: "Nicolás Rodríguez", team: "CARNICERIA FC", goals: 1, yellowCards: 1 },
+            "ronaldo-aviles": { name: "Ronaldo Avilés", team: "CARNICERIA FC", goals: 2, yellowCards: 1 },
+            "abel-vasquez": { name: "Abel Vásquez", team: "CARNICERIA FC", goals: 0, yellowCards: 1 },
+            "marvel-luna": { name: "Marvel Luna", team: "FRANSISQUIÑOS", goals: 1 },
+            "josue-luna": { name: "Josué Luna", team: "FRANSISQUIÑOS", goals: 1, yellowCards: 1 }
+        },
+        captainSigned: {
+            "CARNICERIA FC": true,
+            "FRANSISQUIÑOS": true
+        },
+        fines: {
+            "CARNICERIA FC": { balon: 15, amarillas: 15 },
+            "FRANSISQUIÑOS": { amarillas: 5 }
+        }
+    },
+    "2026-11-26-2020-GLS-IND-WO": {
+        round: 7,
+        kickoff: "2026-11-26T20:20:00-04:00",
+        home: "TEAM GLS",
+        away: "INDEPENDIENTE",
+        status: "walkover",
+        walkoverTeam: "INDEPENDIENTE",
+        fines: {
+            "INDEPENDIENTE": { walkover: 100 }
+        }
+    },
+    "2026-11-26-2120-OLY-SUD": {
+        round: 7,
+        kickoff: "2026-11-26T21:20:00-04:00",
+        home: "OLYMPIC",
+        away: "SUDAMERICANOS",
+        score: [3, 15],
+        status: "finished",
+        players: {
+            "matias-penaloza": { name: "Matías Peñaloza", team: "OLYMPIC", goals: 2 },
+            "richard-anturiano": { name: "Richard Anturiano", team: "OLYMPIC", goals: 1 },
+            "marvin-melgarejo": { name: "Marvin Melgarejo", team: "SUDAMERICANOS", goals: 4 },
+            "marcelo-salguero": { name: "Marcelo Salguero", team: "SUDAMERICANOS", goals: 5 },
+            "emanuel-aguilar": { name: "Emanuel Aguilar", team: "SUDAMERICANOS", goals: 6 }
+        },
+        captainSigned: {
+            "OLYMPIC": true,
+            "SUDAMERICANOS": true
+        },
+        fines: {
+            "OLYMPIC": {},
+            "SUDAMERICANOS": {}
+        }
     }
 });
 
